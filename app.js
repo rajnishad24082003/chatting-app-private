@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 dotenv.config({path:"./configFolder/config.env"});
 const  exphbs =  require('express-handlebars');
-
+const port = process.env.PORT || 3000;
 //passport
 const passport = require("passport");
 require("./configFolder/passport")(passport);
@@ -87,6 +87,6 @@ app.get("/logout",(req,res)=>{
     })
 
     
-app.listen(3000,()=>{
-    console.log("server listening on port 3000");
+app.listen(port,()=>{
+    console.log(`server listening on port ${port}`);
 })
