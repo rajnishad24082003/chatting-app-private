@@ -65,6 +65,23 @@ app.get(
     );
   }
 );
+app.get(
+  "https://chatting-app-private.vercel.app/auth/google",
+  (req, res, next) => {
+    if (req.isAuthenticated()) {
+      res.redirect("/on_signin_pages/storiesPage/user_typed_data");
+    } else {
+      next();
+    }
+  },
+  function (request, response, next) {
+    passport.authenticate("google", { scope: ["profile"] })(
+      request,
+      response,
+      next
+    );
+  }
+);
 app.engine(".hbs", exphbs.engine({ defaultLayout: "main", extname: ".hbs" }));
 app.set("view engine", ".hbs");
 app.get(
